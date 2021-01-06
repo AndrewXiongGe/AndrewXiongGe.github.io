@@ -11,6 +11,8 @@
 					let si = document.getElementById("si");
 					let sina = unescape(na.innerText.split("").join(un)+un);
 					si.innerText=sina;
+					let kigo=document.getElementById("kigo");
+					kigo.innerText=ki.value;
 				}
 
 		</script>
@@ -39,7 +41,7 @@
 		<hr />
 		<br /><br />
 		<div id="t">
-		<input id="ki" value="20E2"/>&nbsp;<button onclick="sikaku()">确认</button>
+		当前插入字符为：<span id="kigo">20E2</span>&emsp;<input id="ki" value="20E2"/>&nbsp;<button onclick="sikaku()">确认修改</button>
 		<a href="https://unicode-table.com/cn/blocks/combining-diacritical-marks-for-symbols/">符号参考</a>
 		<p style="font-size:smaller;margin-top: 0.5rem;">20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线</p>
 		</div>
