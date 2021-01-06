@@ -3,18 +3,17 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<script>
-			window.onload=function(){
-				
-			}
 			function sikaku(){
+					let ki=document.getElementById("ki");
+					let un="%u"+ki.value;//20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 赤道
 					let na = document.getElementById("na");
 					let si = document.getElementById("si");
-					let sina = unescape(na.innerText.split("").join("%u20E2")+"%u20E2");
+					let sina = unescape(na.innerText.split("").join(un)+un);
 					si.innerText=sina;
 				}
+
 		</script>
 		<style>
-			
 			p{
 				width: 31.25rem;
 				height: auto;
@@ -23,15 +22,21 @@
 				white-space:pre-wrap;
 				word-wrap: break-word;
 				margin: auto;
-				
 			}
 		</style>
 	</head>
-	<body>
+	<body style="text-align: center;">
 		<h2 style="text-align: center;">内容</h2>
 		<p contenteditable="true" oninput="sikaku()" id="na"></p>
 		<br />
 		<h2 style="text-align: center;">四角</h2>
 		<p id="si" contenteditable="true"></p>
+		<br /><br /><br /><br /><br /><br /><br /><br />
+		<hr />
+		<br /><br />
+		<input id="ki" value="20E2"/>&nbsp;<button onclick="sikaku()">确认</button>
+		<a href="https://unicode-table.com/cn/blocks/combining-diacritical-marks-for-symbols/">符号参考</a>
+		<p style="font-size:smaller;margin-top: 0.5rem;">20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线</p>
 	</body>
+	
 </html>
