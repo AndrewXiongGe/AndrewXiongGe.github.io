@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			window.onload=function(){
+				
+			}
+			function sikaku(){
+					let na = document.getElementById("na");
+					let si = document.getElementById("si");
+					let sina = unescape(na.innerText.split("").join("%u20E2")+"%u20E2");
+					si.innerText=sina;
+				}
+		</script>
+		<style>
+			
+			p{
+				width: 31.25rem;
+				height: auto;
+				border:1px solid #616F77;
+				word-break:normal;
+				white-space:pre-wrap;
+				word-wrap: break-word;
+				margin: auto;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<h2 style="text-align: center;">内容</h2>
+		<p contenteditable="true" oninput="sikaku()" id="na">太</p>
+		<br />
+		<h2 style="text-align: center;">四角</h2>
+		<p id="si" contenteditable="true"></p>
+	</body>
+</html>
