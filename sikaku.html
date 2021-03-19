@@ -3,18 +3,60 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<script>
-			function sikaku(){
+			function sikaku(num){
 					let ki=document.getElementById("ki");
 					let un="%u"+ki.value;//20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线;202e 从右到左，字符翻转;200b 零宽字符 油管常用反爬字符
-
+										//20E4%u20E3%u20DF 叠加
+					let unlist=un.split("%u");
+					unlist.shift();
+					let newun=un.split("/");
+					let newunjoin=newun.join("");
 					let na = document.getElementById("na");
 					let si = document.getElementById("si");
-					let sina = unescape(na.innerText.split("").join(un)+un);
-					si.innerText=sina;
-					let kigo=document.getElementById("kigo");
-					kigo.innerText=ki.value;
+					let sina = unescape(na.innerText.split("").join(newun)+newunjoin);
+					si.innerText=sina;	
+					if(newun.length>1){
+						let si2=document.getElementById("si2");
+						si2.style.display="block";
+						let si2_tempstr="";
+						let natext=na.innerText
+						for(let i = 0; i < natext.length; i++){
+							si2_tempstr+=(natext[i]+newun[i%newun.length])
+						}
+						si2.innerText=unescape(si2_tempstr);
+					}
+					else if(unlist.length>1){
+						let si2=document.getElementById("si2");
+						si2.style.display="block";
+						let si2_tempstr="";
+						let natext=na.innerText
+						for(let i = 0; i < natext.length; i++){
+							si2_tempstr+=(natext[i]+"%u"+unlist[i%unlist.length])
+						}
+						si2.innerText=unescape(si2_tempstr);
+					}else{
+						let si2=document.getElementById("si2");
+						if(si2.style.display!="none")
+							si2.style.display="none";
+					}
+					if(num==1){
+						let kigo=document.getElementById("kigo");
+						let newlist=newunjoin.split("%u");
+						newlist.shift();
+						kigo.innerText=newlist;
+						kigo.innerText=quchong(newlist);
+						
+					}	
 				}
-
+			function perU(){
+				let ki=document.getElementById("ki");
+				ki.value+="%u";
+				ki.focus();
+			}
+			function quchong(arr){
+			 let s1 = new Set(arr); 
+			 return Array.from(s1);
+			}
 		</script>
 		<style>
 			p{
@@ -34,18 +76,22 @@
 	</head>
 	<body>
 		<h2 style="text-align: center;">内容</h2>
-		<p contenteditable="true" oninput="sikaku()" id="na"></p>
+		<p contenteditable="true" oninput="sikaku(0)" id="na"></p>
 		<br />
 		<h2 style="text-align: center;">四角</h2>
 		<p id="si" contenteditable="true"></p>
+		<br />
+		<p id="si2" contenteditable="true" style="display: none;"></p>
 		<br /><br /><br /><br /><br /><br /><br /><br />
 		<div id="t">
 		<hr />
 		<br /><br />
 		
-		当前插入字符为：<span id="kigo">20E2</span><br /><input id="ki" value="20E2" style="margin-top: 0.5rem;"/>&nbsp;<button onclick="sikaku()">确认修改</button>
-		<a href="https://unicode-table.com/cn/blocks/combining-diacritical-marks-for-symbols/">符号参考</a>
+		已用字符：<span id="kigo">20E2</span><br /><input id="ki" value="20E2" style="margin-top: 0.5rem;"/>&nbsp;<button onclick="sikaku(1)">确认修改</button>
+		<button onclick="perU()">%u</button>
+		<a href="https://unicode-table.com/cn/search?q=组合用">符号参考</a>
 		<p style="font-size:smaller;margin-top: 0.5rem;">20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线</p>
+		<p style="font-size:smaller;margin-top: 0.5rem;">/ 分隔字符组;%u 分隔字符</p>
 		</div>
 	</body>
 	
