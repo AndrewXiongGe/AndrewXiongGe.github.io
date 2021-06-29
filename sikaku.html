@@ -1,108 +1,122 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 		<script>
-			let ichi_num=1;
-			let ichi_str='前后';
-			function sikaku(num){
-					let ki=document.getElementById("ki");
-					let un="%u"+ki.value;//20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线;202e 从右到左，字符翻转;200b 零宽字符 油管常用反爬字符
-										//20E4%u20E3%u20DF 叠加 0336 组合用长划覆盖
-					let unlist=un.split("%u");
-					unlist.shift();
-					let newun=un.split("/");
-					let newunjoin=newun.join("");
-					let na = document.getElementById("na");
-					let nanostar=na.innerText.split('*');
-					let si = document.getElementById("si");
-					if(nanostar.length>1){
-						let si3=document.getElementById("si3");
-						si3.style.display="block";
-						let nanostarescape=na.innerText.split('**');
-						for(i in nanostarescape){
-							if(nanostarescape[i]!=""){
-								nanostarescape[i]=nanostarescape[i].replaceAll('*',newunjoin);
-							}
+			let ichi_num = 1;
+			let ichi_str = '前后';
+
+			function sikaku(num) {
+				let ki = document.getElementById("ki");
+				let un = "%u" + ki.value; //20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线;202e 从右到左，字符翻转;200b 零宽字符 油管常用反爬字符
+				//20E4%u20E3%u20DF 叠加 0336 组合用长划覆盖
+				let unlist = un.split("%u");
+				unlist.shift();
+				let newun = un.split("/");
+				let newunjoin = newun.join("");
+				let na = document.getElementById("na");
+				let nanostar = na.innerText.split('*');
+				let si = document.getElementById("si");
+				if (nanostar.length > 1) {
+					let si3 = document.getElementById("si3");
+					si3.style.display = "block";
+					let nanostarescape = na.innerText.split('**');
+					for (i in nanostarescape) {
+						if (nanostarescape[i] != "") {
+							nanostarescape[i] = nanostarescape[i].replaceAll('*', newunjoin);
 						}
-						
-						si3.innerText=unescape(nanostarescape.join('*'));
-					}else{
-						let si3=document.getElementById("si3");
-						si3.style.display="none";
 					}
-					let sina ="";
-					if(ichi_num==1)
-						sina= unescape(na.innerText.split("").join(newunjoin)+newunjoin);
-					else
-						sina= unescape(newunjoin+na.innerText.split("").join(newunjoin));
-					si.innerText=sina;
-					if(newun.length>1){
-						let si2=document.getElementById("si2");
-						si2.style.display="block";
-						let si2_tempstr="";
-						let natext=na.innerText
-						for(let i = 0; i < natext.length; i++){
-							if(ichi_num==1)
-								si2_tempstr+=(natext[i]+newun[i%newun.length]);
-							else
-								si2_tempstr+=(newun[i%newun.length]+natext[i]);
-						}
-						si2.innerText=unescape(si2_tempstr);
-					}
-					else if(unlist.length>1){
-						let si2=document.getElementById("si2");
-						si2.style.display="block";
-						let si2_tempstr="";
-						let natext=na.innerText
-						for(let i = 0; i < natext.length; i++){
-							if(ichi_num==1)
-								si2_tempstr+=(natext[i]+"%u"+unlist[i%unlist.length]);
-							else
-								si2_tempstr+=("%u"+unlist[i%unlist.length]+natext[i])
-						}
-						si2.innerText=unescape(si2_tempstr);
-					}else{
-						let si2=document.getElementById("si2");
-						if(si2.style.display!="none")
-							si2.style.display="none";
-					}
-					if(num==1){
-						let kigo=document.getElementById("kigo");
-						let newlist=newunjoin.split("%u");
-						newlist.shift();
-						kigo.innerText=newlist;
-						kigo.innerText=quchong(newlist);
-						
-					}	
+
+					si3.innerText = unescape(nanostarescape.join('*'));
+				} else {
+					let si3 = document.getElementById("si3");
+					si3.style.display = "none";
 				}
-			function perU(){
-				let ki=document.getElementById("ki");
-				ki.value+="%u";
+				let sina = "";
+				if (ichi_num == 1)
+					sina = unescape(na.innerText.split("").join(newunjoin) + newunjoin);
+				else
+					sina = unescape(newunjoin + na.innerText.split("").join(newunjoin));
+				si.innerText = sina;
+				if (newun.length > 1) {
+					let si2 = document.getElementById("si2");
+					si2.style.display = "block";
+					let si2_tempstr = "";
+					let natext = na.innerText
+					for (let i = 0; i < natext.length; i++) {
+						if (ichi_num == 1)
+							si2_tempstr += (natext[i] + newun[i % newun.length]);
+						else
+							si2_tempstr += (newun[i % newun.length] + natext[i]);
+					}
+					si2.innerText = unescape(si2_tempstr);
+				} else if (unlist.length > 1) {
+					let si2 = document.getElementById("si2");
+					si2.style.display = "block";
+					let si2_tempstr = "";
+					let natext = na.innerText
+					for (let i = 0; i < natext.length; i++) {
+						if (ichi_num == 1)
+							si2_tempstr += (natext[i] + "%u" + unlist[i % unlist.length]);
+						else
+							si2_tempstr += ("%u" + unlist[i % unlist.length] + natext[i])
+					}
+					si2.innerText = unescape(si2_tempstr);
+				} else {
+					let si2 = document.getElementById("si2");
+					if (si2.style.display != "none")
+						si2.style.display = "none";
+				}
+				if (num == 1) {
+					let kigo = document.getElementById("kigo");
+					let newlist = newunjoin.split("%u");
+					newlist.shift();
+					kigo.innerText = newlist;
+					kigo.innerText = quchong(newlist);
+
+				}
+			}
+
+			function perU() {
+				let ki = document.getElementById("ki");
+				ki.value += "%u";
 				ki.focus();
 			}
-			function quchong(arr){
-			 let s1 = new Set(arr); 
-			 return Array.from(s1);
+
+			function quchong(arr) {
+				let s1 = new Set(arr);
+				return Array.from(s1);
 			}
-			function ichi(obj){
-				ichi_num=(ichi_num+1)%2;
-				obj.innerText=ichi_str[ichi_num];
+
+			function ichi(obj) {
+				ichi_num = (ichi_num + 1) % 2;
+				obj.innerText = ichi_str[ichi_num];
 				sikaku(0);
+			}
+
+			function copy(obj) {
+				let el = document.createElement('textarea');
+				el.value = obj.innerText;
+				document.body.appendChild(el);
+				el.select();
+				document.execCommand('copy');
+				document.body.removeChild(el);
 			}
 		</script>
 		<style>
-			p{
+			p {
 				width: 31.25rem;
 				height: auto;
-				border:1px solid #616F77;
-				word-break:normal;
-				white-space:pre-wrap;
+				border: 1px solid #616F77;
+				word-break: normal;
+				white-space: pre-wrap;
 				word-wrap: break-word;
 				margin: auto;
 			}
-			#t{
-				
+
+			#t {
+
 				text-align: center;
 			}
 		</style>
@@ -112,24 +126,25 @@
 		<p contenteditable="true" oninput="sikaku(0)" id="na"></p>
 		<br />
 		<h2 style="text-align: center;">四角</h2>
-		<p id="si" contenteditable="true"></p>
+		<p id="si" contenteditable="true" onclick='copy(this)'></p>
 		<br />
-		<p id="si2" contenteditable="true" style="display: none;"></p>
+		<p id="si2" contenteditable="true" style="display: none;" onclick='copy(this)'></p>
 		<br />
-		<p id="si3" contenteditable="true" style="display: none;"></p>
+		<p id="si3" contenteditable="true" style="display: none;" onclick='copy(this)'></p>
 		<br /><br /><br /><br /><br /><br /><br /><br />
 		<div id="t">
-		<hr />
-		<br /><br />
-		
-		已用字符：<span id="kigo">20E2</span><br /><input id="ki" value="20E2" style="margin-top: 0.5rem;"/>&nbsp;<button onclick="sikaku(1)">确认修改</button>
-		<button onclick="perU()">%u</button>&nbsp;<button onclick="ichi(this)">后</button>
-		<a href="https://unicode-table.com/cn/search?q=组合用">组合字符参考</a>
-		<a href="https://unicode-table.com/cn/search/?q=结合附加">结合字符参考</a>
-		<br /><br />
-		<p style="font-size:smaller;margin-top: 0.5rem;">20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线</p>
-		<p style="font-size:smaller;margin-top: 0.5rem;">0336 长划覆盖;/ 分隔字符组;%u 分隔字符;*对生成框的内容转义</p>
+			<hr />
+			<br /><br />
+
+			已用字符：<span id="kigo">20E2</span><br /><input id="ki" value="20E2"
+				style="margin-top: 0.5rem;" />&nbsp;<button onclick="sikaku(1)">确认修改</button>
+			<button onclick="perU()">%u</button>&nbsp;<button onclick="ichi(this)">后</button>
+			<a href="https://unicode-table.com/cn/search?q=组合用">组合字符参考</a>
+			<a href="https://unicode-table.com/cn/search/?q=结合附加">结合字符参考</a>
+			<br /><br />
+			<p style="font-size:smaller;margin-top: 0.5rem;">20E4 三角形;20E2 长框；20E3 正框 电脑正常显示；20DF 菱形；20E0 圆圈反斜线</p>
+			<p style="font-size:smaller;margin-top: 0.5rem;">0336 长划覆盖;/ 分隔字符组;%u 分隔字符;*对生成框的内容转义</p>
 		</div>
 	</body>
-	
+
 </html>
