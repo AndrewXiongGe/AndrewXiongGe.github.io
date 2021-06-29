@@ -18,8 +18,13 @@
 				let na = document.getElementById("na");
 				let nanostar = na.innerText.split('*');
 				let si = document.getElementById("si");
+				let si2 = document.getElementById("si2");
+				let si3 = document.getElementById("si3");
+				si.style.background="";
+				si2.style.background="";
+				si3.style.background="";
 				if (nanostar.length > 1) {
-					let si3 = document.getElementById("si3");
+					
 					si3.style.display = "block";
 					let nanostarescape = na.innerText.split('**');
 					for (i in nanostarescape) {
@@ -30,7 +35,6 @@
 
 					si3.innerText = unescape(nanostarescape.join('*'));
 				} else {
-					let si3 = document.getElementById("si3");
 					si3.style.display = "none";
 				}
 				let sina = "";
@@ -40,7 +44,7 @@
 					sina = unescape(newunjoin + na.innerText.split("").join(newunjoin));
 				si.innerText = sina;
 				if (newun.length > 1) {
-					let si2 = document.getElementById("si2");
+					
 					si2.style.display = "block";
 					let si2_tempstr = "";
 					let natext = na.innerText
@@ -52,7 +56,6 @@
 					}
 					si2.innerText = unescape(si2_tempstr);
 				} else if (unlist.length > 1) {
-					let si2 = document.getElementById("si2");
 					si2.style.display = "block";
 					let si2_tempstr = "";
 					let natext = na.innerText
@@ -64,7 +67,6 @@
 					}
 					si2.innerText = unescape(si2_tempstr);
 				} else {
-					let si2 = document.getElementById("si2");
 					if (si2.style.display != "none")
 						si2.style.display = "none";
 				}
@@ -76,6 +78,7 @@
 					kigo.innerText = quchong(newlist);
 
 				}
+
 			}
 
 			function perU() {
@@ -102,6 +105,8 @@
 				el.select();
 				document.execCommand('copy');
 				document.body.removeChild(el);
+				obj.focus();
+				obj.style.backgroundColor = "#aaaaff"
 			}
 		</script>
 		<style>
