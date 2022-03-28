@@ -166,22 +166,11 @@
 		<script src="./dynamic.js"></script>
 		<script>
 			window.onload = function() {
-				const relation = {
-					"1": "转发",
-					"2": "图片",
-					"4": "文字",
-					"8": "视频",
-					"64": "专栏",
-					"256": "音频"
-				};
-
 				let cardList = data;
-				
 				let dateList = [];
 				for (let i in cardList) {
 					dateList.push(i);
 				}
-
 				function fmtDate(obj) {
 					var date = new Date(obj);
 					var y = 1900 + date.getYear();
@@ -232,9 +221,8 @@
 						tb.innerHTML = "";
 						if (cardList[date]) {
 							for (let i of cardList[date]) {
-								const cardurl = `https://t.bilibili.com/${i[0]}?tab=2`
 								tb.innerHTML +=
-									`<tr><td><a href="${cardurl}" target="_blank">${i[1]}</a></td><td>${i[2]}</td></tr>`;
+									`<tr><td>${i[0]}</td><td>${i[1]}</td></tr>`;
 							}
 						}
 					}
