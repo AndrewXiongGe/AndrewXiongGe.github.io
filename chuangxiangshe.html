@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div>
+			<p id= "p" style="text-align: center;font-size: 2em;"></p>
+			
+		</div>
+	</body>
+	<script>
+		fetch("https://cxcyxt.gdut.edu.cn/v5/api/chuangxiangshe/list").then(response=>response.json()).then(
+		res=>{
+			console.log(res);
+			document.getElementById('p').innerText = "当前创享社报名人数为"+res.data.total;
+			
+		
+		}
+		)
+		
+		
+	</script>
+</html>
